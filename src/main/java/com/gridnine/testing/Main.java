@@ -8,6 +8,7 @@ import com.gridnine.testing.filter.rule.TimeBetweenFlightsLessThanSomeHoursRule;
 import com.gridnine.testing.model.Flight;
 
 import java.util.List;
+import java.util.Map;
 
 
 public class Main {
@@ -15,7 +16,7 @@ public class Main {
 
         List<Flight> listOfFlights = FlightBuilder.createFlights();
         System.out.println("Flights from test builder:");
-        listOfFlights.forEach(System.out::println);
+        System.out.println(listOfFlights);
         System.out.println();
 
         FlightFilter flightFilter = new FlightFilter(
@@ -23,7 +24,10 @@ public class Main {
                         new DepartureDateLaterThanNowRule()
                 )
         );
-        flightFilter.filteredFlight(listOfFlights);
+        for (Map.Entry<String, List<Flight>> entry : flightFilter.filteredFlight(listOfFlights).entrySet()) {
+            System.out.println(entry.getKey());
+            System.out.println(entry.getValue());
+        }
         System.out.println();
 
         FlightFilter flightFilterTwo = new FlightFilter(
@@ -31,7 +35,10 @@ public class Main {
                         new ArrivalDateEarlyLaterDepartureDateRule()
                 )
         );
-        flightFilterTwo.filteredFlight(listOfFlights);
+        for (Map.Entry<String, List<Flight>> entry : flightFilterTwo.filteredFlight(listOfFlights).entrySet()) {
+            System.out.println(entry.getKey());
+            System.out.println(entry.getValue());
+        }
         System.out.println();
 
         FlightFilter flightFilterThree = new FlightFilter(
@@ -39,7 +46,10 @@ public class Main {
                         new TimeBetweenFlightsLessThanSomeHoursRule(2)
                 )
         );
-        flightFilterThree.filteredFlight(listOfFlights);
+        for (Map.Entry<String, List<Flight>> entry : flightFilterThree.filteredFlight(listOfFlights).entrySet()) {
+            System.out.println(entry.getKey());
+            System.out.println(entry.getValue());
+        }
         System.out.println();
 
         FlightFilter flightFilterAll = new FlightFilter(
@@ -49,6 +59,9 @@ public class Main {
                         new TimeBetweenFlightsLessThanSomeHoursRule(2)
                 )
         );
-        flightFilterAll.filteredFlight(listOfFlights);
+        for (Map.Entry<String, List<Flight>> entry : flightFilterAll.filteredFlight(listOfFlights).entrySet()) {
+            System.out.println(entry.getKey());
+            System.out.println(entry.getValue());
+        }
     }
 }
