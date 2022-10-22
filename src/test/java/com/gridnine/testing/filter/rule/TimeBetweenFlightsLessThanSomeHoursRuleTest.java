@@ -6,8 +6,11 @@ import org.junit.jupiter.api.Test;
 import java.time.LocalDateTime;
 
 import static com.gridnine.testing.builder.FlightBuilder.createFlight;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
+/**
+ * Testing of {@link TimeBetweenFlightsLessThanSomeHoursRule}.
+ */
 class TimeBetweenFlightsLessThanSomeHoursRuleTest {
     LocalDateTime threeDaysFromNow = LocalDateTime.now().plusDays(3);
 
@@ -18,7 +21,6 @@ class TimeBetweenFlightsLessThanSomeHoursRuleTest {
     void checkTimeBetweenFlightsLessThanSomeHoursRule_Test() {
         TimeBetweenFlightsLessThanSomeHoursRule rule = new TimeBetweenFlightsLessThanSomeHoursRule(2);
         boolean actual = rule.check(flight);
-        boolean expected = false;
-        assertEquals(expected, actual);
+        assertFalse(actual);
     }
 }
